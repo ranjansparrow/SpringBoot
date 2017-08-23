@@ -1,5 +1,7 @@
 package springbootstarter.topic;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,15 +14,16 @@ import java.util.List;
 @RestController
 public class TopicController {
 
+    @Autowired
+    TopicService topicService;
+
     @RequestMapping("/topics")
     public List<Topic> getAllTopic(){
-        return Arrays.asList(
-            new Topic("Spring", "Spring Framework" ,"Spring Description"),
-            new Topic("Java", "Core Java" ,"This is Core Java"),
-            new Topic("Hibernate", "Hibernate Framework" ,"Hibernate Description")
+        return topicService.getTopics();
+    }
 
-
-
-        );
+    @RequestMapping("/topics/{id}")
+    public Topic getTopic(@PathVariable String id){
+        return topicService.getTopic(id);
     }
 }
