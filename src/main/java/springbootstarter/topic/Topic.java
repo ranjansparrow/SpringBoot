@@ -1,9 +1,14 @@
 package springbootstarter.topic;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  * Created by ranjan on 8/22/17.
  */
+@Entity
 public class Topic {
+    @Id
     private String id;
     private String name;
     private String description;
